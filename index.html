@@ -40,11 +40,14 @@
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 6vw;
     background: rgba(15,14,12,0.92);
     border-bottom: 0.5px solid var(--border);
     backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 6vw;
   }
   .nav-name {
     font-family: var(--serif);
@@ -74,7 +77,8 @@
   /* HERO */
   .hero {
     padding: 6rem 6vw 5rem;
-    max-width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
   }
   .availability {
     display: inline-flex; align-items: center; gap: 7px;
@@ -165,6 +169,9 @@
     padding: 1.5rem 6vw;
     border-top: 0.5px solid var(--border);
     border-bottom: 0.5px solid var(--border);
+  }
+  .tools-inner {
+    max-width: 1100px; margin: 0 auto;
     display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
     justify-content: center;
   }
@@ -179,7 +186,7 @@
 
   /* SECTION COMMON */
   section { padding: 5rem 6vw; }
-  .section-inner { max-width: 100%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
   .eyebrow {
     font-size: 11px; font-weight: 500; letter-spacing: 2px;
     text-transform: uppercase; color: var(--accent);
@@ -293,6 +300,9 @@
   footer {
     padding: 2rem 6vw;
     border-top: 0.5px solid var(--border);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 1rem;
   }
@@ -313,12 +323,14 @@
 <body>
 
 <nav>
-  <div class="nav-name">jeorge<em>.</em></div>
-  <div class="nav-links">
-    <a href="#how">how it works</a>
-    <a href="#services">what i do</a>
-    <a href="#contact">hit me up</a>
-    <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">let's talk →</button>
+  <div class="nav-inner">
+    <div class="nav-name">jeorge<em>.</em></div>
+    <div class="nav-links">
+      <a href="#how">how it works</a>
+      <a href="#services">what i do</a>
+      <a href="#contact">hit me up</a>
+      <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">let's talk →</button>
+    </div>
   </div>
 </nav>
 
@@ -373,17 +385,19 @@
 
 <!-- TOOLS -->
 <div class="tools-row">
-  <span class="tools-label">i work with</span>
-  <span class="tool-tag">n8n</span>
-  <span class="tool-tag">Make</span>
-  <span class="tool-tag">Zapier</span>
-  <span class="tool-tag">OpenAI</span>
-  <span class="tool-tag">Notion</span>
-  <span class="tool-tag">Slack</span>
-  <span class="tool-tag">Gmail</span>
-  <span class="tool-tag">Airtable</span>
-  <span class="tool-tag">Google Sheets</span>
-  <span class="tool-tag">+ more</span>
+  <div class="tools-inner">
+    <span class="tools-label">i work with</span>
+    <span class="tool-tag">n8n</span>
+    <span class="tool-tag">Make</span>
+    <span class="tool-tag">Zapier</span>
+    <span class="tool-tag">OpenAI</span>
+    <span class="tool-tag">Notion</span>
+    <span class="tool-tag">Slack</span>
+    <span class="tool-tag">Gmail</span>
+    <span class="tool-tag">Airtable</span>
+    <span class="tool-tag">Google Sheets</span>
+    <span class="tool-tag">+ more</span>
+  </div>
 </div>
 
 <!-- HOW IT WORKS -->
@@ -539,11 +553,13 @@
 </section>
 
 <footer>
-  <p>© 2026 jeorge — automation that actually works</p>
-  <div class="foot-links">
-    <a href="#">linkedin</a>
-    <a href="#">github</a>
-    <a href="#">email me</a>
+  <div class="footer-inner">
+    <p>© 2026 jeorge — automation that actually works</p>
+    <div class="foot-links">
+      <a href="#">linkedin</a>
+      <a href="#">github</a>
+      <a href="#">email me</a>
+    </div>
   </div>
 </footer>
 
