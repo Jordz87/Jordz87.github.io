@@ -522,20 +522,20 @@
       </div>
     </div>
 
-    <div class="contact-form">
+    <div class="contact-form" id="contact-form">
       <div class="field-row">
         <div class="field">
           <label>your name</label>
-          <input type="text" placeholder="Alex" />
+          <input id="from_name" type="text" placeholder="Alex" />
         </div>
         <div class="field">
           <label>your email</label>
-          <input type="email" placeholder="alex@yourcompany.com" />
+          <input id="from_email" type="email" placeholder="alex@yourcompany.com" />
         </div>
       </div>
       <div class="field">
         <label>which tool are you using? (or want to use)</label>
-        <select>
+        <select id="tool">
           <option value="">pick one...</option>
           <option>n8n</option>
           <option>Make (Integromat)</option>
@@ -546,9 +546,10 @@
       </div>
       <div class="field">
         <label>what's the thing you want to stop doing manually?</label>
-        <textarea rows="4" placeholder="every day i have to manually copy leads from our contact form into a spreadsheet and then email each one... it takes forever and i always forget someone 😅"></textarea>
+        <textarea id="message" rows="4" placeholder="every day i have to manually copy leads from our contact form into a spreadsheet and then email each one... it takes forever and i always forget someone 😅"></textarea>
       </div>
-      <button class="send-btn">send it over →</button>
+      <button class="send-btn" id="send-btn" onclick="sendEmail()">send it over →</button>
+      <p id="form-status" style="font-size:14px; margin-top:0.5rem; display:none;"></p>
     </div>
   </div>
 </section>
@@ -563,6 +564,54 @@
     </div>
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init('8B0YPTSLjNivSggCe');
+
+  function sendEmail() {
+    const name = document.getElementById('from_name').value.trim();
+    const email = document.getElementById('from_email').value.trim();
+    const tool = document.getElementById('tool').value;
+    const message = document.getElementById('message').value.trim();
+    const btn = document.getElementById('send-btn');
+    const status = document.getElementById('form-status');
+
+    if (!name || !email || !message) {
+      status.style.display = 'block';
+      status.style.color = '#e8a07a';
+      status.textContent = 'hey! fill in your name, email, and message first 😊';
+      return;
+    }
+
+    btn.textContent = 'sending...';
+    btn.disabled = true;
+    status.style.display = 'none';
+
+    emailjs.send('service_mk4b439', 'template_n0com6r', {
+      from_name: name,
+      from_email: email,
+      tool: tool || 'not specified',
+      message: message
+    }).then(() => {
+      btn.textContent = 'sent! 🎉';
+      status.style.display = 'block';
+      status.style.color = '#7ec98a';
+      status.textContent = "got it! i'll get back to you within a few hours 🙌";
+      document.getElementById('from_name').value = '';
+      document.getElementById('from_email').value = '';
+      document.getElementById('tool').value = '';
+      document.getElementById('message').value = '';
+    }).catch((err) => {
+      btn.textContent = 'send it over →';
+      btn.disabled = false;
+      status.style.display = 'block';
+      status.style.color = '#e8a07a';
+      status.textContent = "hmm, something went wrong. try again or email me directly 🙏";
+      console.error('EmailJS error:', err);
+    });
+  }
+</script>
 
 </body>
 </html>
